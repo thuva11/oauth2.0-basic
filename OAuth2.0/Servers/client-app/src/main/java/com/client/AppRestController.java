@@ -10,6 +10,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import java.io.*;
 import org.json.*;
 import java.net.*;
+import java.util.Base64;
 
 @RestController
 public class AppRestController {
