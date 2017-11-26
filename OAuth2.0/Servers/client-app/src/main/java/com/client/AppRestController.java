@@ -40,6 +40,8 @@ public class AppRestController {
     {
         String auth_url = "http://localhost:8081/auth/oauth/token";
         String POST_PARAMS = "grant_type=authorization_code&code="+authCode;
+        String CLIENT_ID = "1000123456";
+        String CLIENT_SECRET = "mAac87WQq";
         String accessToken = "";
 
         try
@@ -48,9 +50,11 @@ public class AppRestController {
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
             con.setRequestMethod("POST");
 
+            String cred = CLIENT_ID+":"+CLIENT_SECRET;
+            byte[] encodedCred = Base64.getEncoder().encode(cred.getBytes());
             //Set Headers
             con.setRequestProperty("content-type", "application/x-www-form-urlencoded");
-            con.setRequestProperty("Authorization", "Basic MTAwMDEyMzQ1NjptQWFjODdXUXE=");
+            con.setRequestProperty("Authorization", "Basic " + new String(encodedCred));
 
             //Set Body
             con.setDoOutput(true);
